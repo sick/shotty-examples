@@ -12,7 +12,6 @@ import json
 import base64
 from optparse import OptionParser
 
-import slumber
 import requests
 
 sys.path.append(os.path.dirname(__file__))
@@ -28,12 +27,14 @@ parser.add_option('-u', action = 'store_true', dest = 'upload', default = False,
 (options, args) = parser.parse_args()
 
 
-
+# python-firebase-1.2
 from firebase import firebase
-fb = firebase.FirebaseApplication('https://shotty-<<STUDIO>>.firebaseio.com/')
-authentication = firebase.FirebaseAuthentication('<<TOKEN>>', None, extra={'admin': True})
+fb = firebase.FirebaseApplication('https://shotty-raketa.firebaseio.com/')
+authentication = firebase.FirebaseAuthentication('rmT3XFW6tVG4T8JelfZ1hb8tyM1Pm1NBCsxwdpIl', None, extra={'uid': 'simplelogin:4'})
 fb.authentication = authentication
 
+# from firebase import Firebase
+# fb = Firebase('http://shotty-raketa.firebaseio.com/', auth_token="rmT3XFW6tVG4T8JelfZ1hb8tyM1Pm1NBCsxwdpIl")
 
 settings = fb.get('/projects/' + options.project + '/settings', None)
 shots = fb.get('/shots/' + options.project, None)
@@ -84,7 +85,7 @@ for _id in shots:
     print shot_plate_path
 
     # s = sequence.glob(os.path.join(shot_plate_path, shot_name))
-    s = sequence.glob(os.path.join(shot_plate_path, '*.dpx'))
+    s = sequence.glob(os.path.join(os.path.normpath(shot_plate_path), '*'))
     # print s
     if len(s) == 1:
         print '\tMain plate ', s
