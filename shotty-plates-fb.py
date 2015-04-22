@@ -10,6 +10,7 @@ import tempfile
 import urllib
 import json
 import base64
+from multiprocessing import freeze_support
 from optparse import OptionParser
 
 import requests
@@ -56,7 +57,7 @@ def SequenceThumbGen(fframe, lframe, name):
     if not os.path.exists(thmbStorePath):
         sys.stderr.write('Warning %s does not exist' % thmbStorePath)
         sys.exit(1)
-
+    freeze_support()
     first = os.path.join(thmbStorePath, (name + '_fframe.jpg'))
     subprocess.check_call(['convert', fframe, '-resize', '50%', '-gravity', 'center', '-crop', '640x320+0+0', '-set', 'film-gamma', '1.7', first])
 
@@ -66,7 +67,7 @@ def SequenceThumbGen(fframe, lframe, name):
 
 
 
-allowed_extensions = ['.dpx', '.cin', '.tga']
+allowed_extensions = ['.dpx', '.cin', '.tga', '.png']
 
 for _id in shots:
     shot = shots[_id]
