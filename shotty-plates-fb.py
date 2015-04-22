@@ -30,12 +30,10 @@ parser.add_option('-u', action = 'store_true', dest = 'upload', default = False,
 
 # python-firebase-1.2
 from firebase import firebase
-fb = firebase.FirebaseApplication('https://shotty-raketa.firebaseio.com/')
+fb = firebase.FirebaseApplication('https://<<STUDIO>>.firebaseio.com/')
 authentication = firebase.FirebaseAuthentication('rmT3XFW6tVG4T8JelfZ1hb8tyM1Pm1NBCsxwdpIl', None, extra={'uid': 'simplelogin:4'})
 fb.authentication = authentication
 
-# from firebase import Firebase
-# fb = Firebase('http://shotty-raketa.firebaseio.com/', auth_token="rmT3XFW6tVG4T8JelfZ1hb8tyM1Pm1NBCsxwdpIl")
 
 settings = fb.get('/projects/' + options.project + '/settings', None)
 shots = fb.get('/shots/' + options.project, None)
