@@ -33,7 +33,7 @@ if options.project is None:   # if filename is not given
 # python-firebase-1.2
 from firebase import firebase
 fb = firebase.FirebaseApplication('https://<<STUDIO>>.firebaseio.com/')
-authentication = firebase.FirebaseAuthentication('rmT3XFW6tVG4T8JelfZ1hb8tyM1Pm1NBCsxwdpIl', None, extra={'uid': 'simplelogin:4'})
+authentication = firebase.FirebaseAuthentication('', None, extra={'uid': 'simplelogin:1'})
 fb.authentication = authentication
 
 
@@ -116,7 +116,7 @@ for _id in shots:
 
                 thumb = SequenceThumbGen(ff, lf, shot_name)
 
-                url = 'http://raketa.shotty.cc/api/plate/upload'
+                url = 'http://28p.shotty.cc/api/plate/upload'
                 files = {'file': open(thumb, 'rb')}
                 r = requests.post(url, files=files)
 
