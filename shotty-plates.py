@@ -27,6 +27,8 @@ parser.add_option('-u', action = 'store_true', dest = 'upload', default = False,
 
 (options, args) = parser.parse_args()
 
+if options.project is None:   # if filename is not given
+    parser.error('Missing Project code value')
 
 # python-firebase-1.2
 from firebase import firebase
