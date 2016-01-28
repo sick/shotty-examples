@@ -9,7 +9,8 @@ parser.add_option('--project', dest='project', default=None, help='Project code'
 
 from firebase import firebase
 fb = firebase.FirebaseApplication('https://shotty-<<STUDIO>>.firebaseio.com/')
-authentication = firebase.FirebaseAuthentication('<<TOKEN>>', None, extra={'admin': True})
+authentication = firebase.FirebaseAuthentication('<<TOKEN>>', '<<EMAIL>>', extra={'uid': '<<ID>>'})
+
 fb.authentication = authentication
 
 settings = fb.get('/projects/' + options.project + '/settings', None)
